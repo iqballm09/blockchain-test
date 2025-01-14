@@ -1,0 +1,49 @@
+{
+  "name": "fabric-network-distributor",
+  "description": "Connection profile for Hyperledger Explorer",
+  "version": "1.0.0",
+  "client": {
+    "organization": "distributor",
+    "tlsEnable": true,
+    "enableAuthentication": true,
+    "adminCredential": {
+      "id": "admin",
+      "password": "adminpw"
+    },
+    "connection": {
+      "timeout": {
+        "peer": {
+          "endorser": "300"
+        },
+        "orderer": "300"
+      }
+    }
+  },
+  "organizations": {
+    "distributor": {
+      "mspid": "distributorMSP",
+      "adminPrivateKey": {
+        "path": "/tmp/crypto/peerOrganizations/distributor.com/users/Admin@distributor.com/msp/keystore/priv_sk"
+      },
+      "peers": ["peer0.distributor.com"],
+      "signedCert": {
+        "path": "/tmp/crypto/peerOrganizations/distributor.com/users/Admin@distributor.com/msp/signcerts/Admin@distributor.com-cert.pem"
+      }
+    }
+  },
+  "peers": {
+    "peer0.distributor.com": {
+      "url": "grpcs://peer0.distributor.com:7051",
+      "tlsCACerts": {
+        "path": "/tmp/crypto/peerOrganizations/distributor.com/msp/tlscacerts/tlsca.distributor.com-cert.pem"
+      }
+    }
+  },
+  "channels": {
+    "fabric-channel": {
+      "peers": {
+        "peer0.distributor.com": {}
+      }
+    }
+  }
+}

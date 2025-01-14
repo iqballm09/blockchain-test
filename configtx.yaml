@@ -1,0 +1,163 @@
+Capabilities:
+  Channel: &ChannelCapabilities
+    V2_0: true
+  Orderer: &OrdererCapabilities
+    V2_0: true
+  Application: &ApplicationCapabilities
+    V2_0: true
+
+Channel: &ChannelDefaults
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+  Capabilities:
+    <<: *ChannelCapabilities
+
+# Modify organizations
+Organizations:
+  - &Orderer
+    Name: ordererMSP
+    ID: ordererMSP
+    MSPDir: crypto-config/ordererOrganizations/orderer.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('ordererMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('ordererMSP.member')"
+      Admins:
+        Type: Signature
+        Rule: "OR('ordererMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('ordererMSP.member')"
+
+  - &Distributor
+    Name: distributorMSP
+    ID: distributorMSP
+    MSPDir: crypto-config/peerOrganizations/distributor.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('distributorMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('distributorMSP.admin', 'distributorMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('distributorMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('distributorMSP.peer')"
+    AnchorPeers:
+      - Host: peer0.distributor.com # define dns / ip address if using multihost technique
+        Port: 7051 # define port
+
+  - &Retail
+    Name: retailMSP
+    ID: retailMSP
+    MSPDir: crypto-config/peerOrganizations/retail.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('retailMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('retailMSP.admin', 'retailMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('retailMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('retailMSP.peer')"
+    AnchorPeers:
+      - Host: peer0.retail.com
+        Port: 7051
+
+Application: &ApplicationDefaults
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    Endorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+  Capabilities:
+    <<: *ApplicationCapabilities
+
+Orderer: &OrdererDefaults
+  OrdererType: etcdraft # define consensus type, either solo or etcdraft
+  Addresses:
+    - orderer.main.com:7050
+  BatchTimeout: 2s
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    BlockValidation:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+  Capabilities:
+    <<: *OrdererCapabilities
+  EtcdRaft: # if using solo consensus, remove this field
+    Consenters:
+      - Host: orderer.main.com
+        Port: 7050
+        ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/main.orderer.com/tls/server.crt
+        ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/main.orderer.com/tls/server.crt
+      - Host: orderer.distributor.com
+        Port: 7055
+        ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/distributor.orderer.com/tls/server.crt
+        ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/distributor.orderer.com/tls/server.crt
+      - Host: orderer.retail.com
+        Port: 7055
+        ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/retail.orderer.com/tls/server.crt
+        ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/retail.orderer.com/tls/server.crt
+
+Profiles:
+  OrdererGenesis:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+        - *Orderer
+    Consortiums:
+      TestConsortium: # rename based on Consortium name on ChannelProfile
+        Organizations:
+          - *Distributor
+          - *Retail
+
+  ChannelProfile:
+    <<: *ChannelDefaults
+    Consortium: TestConsortium # Rename Consortium name based on env file.
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *Distributor
+        - *Retail
