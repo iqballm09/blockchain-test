@@ -1,1 +1,1 @@
-docker-compose -f retail.yaml up -d
+docker compose -f retail.yaml up -d

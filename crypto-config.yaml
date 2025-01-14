@@ -29,7 +29,7 @@ PeerOrgs:
     Users:
       Count: 1 # The number of user accounts _in addition_ to Admin
     Specs:
-      - Hostname: distributor
+      - Hostname: peer0
         SANS:
           - peer0.distributor.com
           - 45.158.126.74
@@ -42,7 +42,7 @@ PeerOrgs:
     Users:
       Count: 1
     Specs:
-      - Hostname: retail
+      - Hostname: peer0
         SANS:
           - peer0.retail.com
           - 45.149.187.204
