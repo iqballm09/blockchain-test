@@ -34,6 +34,7 @@ function json_connection_profile {
 
 function json_config_org {
     sed -e "s/\${ORG_NAME}/$1/g" \
+        -e "s/\${NETWORK_NAME}/$2/g" \
         template/config-org.json
 }
 
@@ -55,5 +56,5 @@ echo "$(json_config_org $ORG1_NAME)" > ./explorer/${ORG1_NAME}/config-global.jso
 echo "$(json_config_org $ORG1_NAME)" > ./explorer/${ORG1_NAME}/config-${ORG1_NAME}.json
 
 echo "$(json_connection_profile $ORG2_NAME $NETWORK_NAME $HOST2_CA_ADMIN_NAME $HOST2_CA_ADMIN_PASSWORD $ORG2_MSPNAME $PEER0_ORG2_DOMAIN $ORG2_DOMAIN $PEER0_ORG2_CORE_ADDRESS $CHANNEL_NAME)" > ./explorer/${ORG2_NAME}/connection-profile-${ORG2_NAME}.json
-echo "$(json_config_org $ORG1_NAME)" > ./explorer/${ORG2_NAME}/config-global.json
-echo "$(json_config_org $ORG2_NAME)" > ./explorer/${ORG2_NAME}/config-${ORG2_NAME}.json
+echo "$(json_config_org $ORG1_NAME $NETWORK_NAME)" > ./explorer/${ORG2_NAME}/config-global.json
+echo "$(json_config_org $ORG2_NAME $NETWORK_NAME)" > ./explorer/${ORG2_NAME}/config-${ORG2_NAME}.json

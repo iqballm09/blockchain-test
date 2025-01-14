@@ -1,6 +1,6 @@
 {
   "network-configs": {
-    "network-distributor": {
+    "fabric-network-distributor": {
       "name": "Network of distributor",
       "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-distributor.json"
     }

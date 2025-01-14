@@ -3,7 +3,7 @@
   "description": "Connection profile for Hyperledger Explorer",
   "version": "1.0.0",
   "client": {
-    "organization": "distributor",
+    "organization": "distributorMSP",
     "tlsEnable": true,
     "enableAuthentication": true,
     "adminCredential": {
@@ -13,9 +13,9 @@
     "connection": {
       "timeout": {
         "peer": {
-          "endorser": "300"
+          "endorser": "10000"
         },
-        "orderer": "300"
+        "orderer": "10000"
       }
     }
   },
