@@ -46,8 +46,8 @@ services:
       - CORE_PEER_LOCALMSPID=${ORG2_MSPNAME}
     volumes:
       - /var/run/:/host/var/run/
-      - ../../crypto-config/peerOrganizations/distributor.com/peers/peer0.distributor.com/msp:/etc/hyperledger/fabric/msp
-      - ../../crypto-config/peerOrganizations/distributor.com/peers/peer0.distributor.com/tls:/etc/hyperledger/fabric/tls
+      - ../../crypto-config/peerOrganizations/retail.com/peers/peer0.retail.com/msp:/etc/hyperledger/fabric/msp
+      - ../../crypto-config/peerOrganizations/retail.com/peers/peer0.retail.com/tls:/etc/hyperledger/fabric/tls
       - ${PEER0_ORG2_DOMAIN}:/var/hyperledger/production
     ports:
       - ${PEER0_ORG_PORT}:${PEER0_ORG_PORT}
@@ -68,10 +68,10 @@ services:
       - CORE_PEER_ADDRESS=${PEER0_ORG2_CORE_ADDRESS}
       - CORE_PEER_LOCALMSPID=${ORG2_MSPNAME}
       - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/distributor.com/peers/peer0.distributor.com/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/distributor.com/peers/peer0.distributor.com/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/distributor.com/peers/peer0.distributor.com/tls/ca.crt
-      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/distributor.com/users/Admin@distributor.com/msp
+      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retail.com/peers/peer0.retail.com/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retail.com/peers/peer0.retail.com/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retail.com/peers/peer0.retail.com/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retail.com/users/Admin@retao;.com/msp
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: /bin/bash
     volumes:
