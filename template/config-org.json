@@ -1,0 +1,9 @@
+{
+  "network-configs": {
+    "${NETWORK_NAME}-${ORG_NAME}": {
+      "name": "Network of ${ORG_NAME}",
+      "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-${ORG_NAME}.json"
+    }
+  },
+  "license": "Apache-2.0"
+}
