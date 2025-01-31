@@ -13,7 +13,8 @@ volumes:
   fabric-api:
   db.explorer.distributor:
   explorer.distributor.com:
-  pgdata:
+  # couchdb.distributor.com:
+  # couchdb-data:
 
 networks:
   fabric-network:
@@ -52,6 +53,19 @@ services:
     networks:
       - ${NETWORK_NAME}
 
+  # couchdb.distributor.com:
+  #   image: couchdb:${COUCHDB_VERSION}
+  #   container_name: couchdb.distributor.com
+  #   environment:
+  #     - COUCHDB_USER=${COUCHDB_USERNAME_ORG1}
+  #     - COUCHDB_PASSWORD=${COUCHDB_PASSWORD_ORG1}
+  #   ports:
+  #     - "${COUCHDB_PORT}:${COUCHDB_PORT}"
+  #   networks:
+  #     - ${NETWORK_NAME}
+  #   volumes:
+  #     - couchdb-data:/opt/couchdb/data
+
   peer0.distributor.com:
     container_name: ${PEER0_ORG1_DOMAIN}
     extends:
@@ -66,6 +80,10 @@ services:
       - CORE_PEER_GOSSIP_BOOTSTRAP=${PEER0_ORG2_CORE_ADDRESS}
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=${PEER0_ORG1_CORE_ADDRESS}
       - CORE_PEER_LOCALMSPID=${ORG1_MSPNAME}
+      # - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      # - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.distributor.com:${COUCHDB_PORT}
+      # - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=${COUCHDB_USERNAME_ORG1}
+      # - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=${COUCHDB_PASSWORD_ORG1}
     volumes:
       - /var/run/:/host/var/run/
       - ../../crypto-config/peerOrganizations/distributor.com/peers/peer0.distributor.com/msp:/etc/hyperledger/fabric/msp

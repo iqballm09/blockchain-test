@@ -11,6 +11,8 @@ volumes:
   fabric-api:
   db.explorer.retail:
   explorer.retail.com:
+  # couchdb.retail.com:
+  # couchdb-data:
 
 services:
   orderer.retail.com:
@@ -30,6 +32,19 @@ services:
     networks:
       - ${NETWORK_NAME}
 
+  # couchdb.retail.com:
+  #   image: couchdb:${COUCHDB_VERSION}
+  #   container_name: couchdb.retail.com
+  #   environment:
+  #     - COUCHDB_USER=${COUCHDB_USERNAME_ORG2}
+  #     - COUCHDB_PASSWORD=${COUCHDB_PASSWORD_ORG2}
+  #   ports:
+  #     - "${COUCHDB_PORT}:${COUCHDB_PORT}"
+  #   networks:
+  #     - ${NETWORK_NAME}
+  #   volumes:
+  #     - couchdb-data:/opt/couchdb/data
+
   peer0.retail.com:
     container_name: ${PEER0_ORG2_DOMAIN}
     extends:
@@ -44,6 +59,10 @@ services:
       - CORE_PEER_GOSSIP_BOOTSTRAP=${PEER0_ORG1_CORE_ADDRESS}
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=${PEER0_ORG2_CORE_ADDRESS}
       - CORE_PEER_LOCALMSPID=${ORG2_MSPNAME}
+      # - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      # - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.retail.com:${COUCHDB_PORT}
+      # - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=${COUCHDB_USERNAME_ORG2}
+      # - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=${COUCHDB_PASSWORD_ORG2}
     volumes:
       - /var/run/:/host/var/run/
       - ../../crypto-config/peerOrganizations/retail.com/peers/peer0.retail.com/msp:/etc/hyperledger/fabric/msp
