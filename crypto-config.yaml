@@ -16,7 +16,7 @@ OrdererOrgs:
       - Hostname: sl
         SANS:
           - orderer.sl.com
-          - 10.239.54.32
+          - 10.239.54.36
 
 # Peer Definition
 # Note: Peer name orderer starts from 0. peer0, peer1, etc.
@@ -45,4 +45,4 @@ PeerOrgs:
       - Hostname: peer0
         SANS:
           - peer0.sl.com
-          - 10.239.54.32
+          - 10.239.54.36

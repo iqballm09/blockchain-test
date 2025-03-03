@@ -20,7 +20,6 @@ RUN apt-get update && \
     lsb-release \
     software-properties-common
 
-# Install Docker using the official Docker convenience script
 RUN curl -fsSL https://get.docker.com -o get-docker.sh && \
     sh get-docker.sh && \
     rm get-docker.sh

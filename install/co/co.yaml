@@ -17,7 +17,7 @@ volumes:
   # couchdb-data:
 
 networks:
-  fabric-network:
+  test-network:
     external: true
 
 services:
