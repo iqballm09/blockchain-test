@@ -6,8 +6,8 @@ VERSION="1"
 SEQUENCE="1"
 PACKAGE_ID="chaincodesv1:d9ed1218e4821379fe26c1bc888421bac794280962ae07786b741eefb39cf990"
 ORDERER_CA="/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/orderer.com/orderers/main.orderer.com/msp/tlscacerts/tlsca.orderer.com-cert.pem"
-CORE_PEER_MSPCONFIGPATH_ORG2=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retail.com/users/Admin@retail.com/msp
-CORE_PEER_TLS_ROOTCERT_FILE_ORG2=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retail.com/users/Admin@retail.com/tls/ca.crt
+CORE_PEER_MSPCONFIGPATH_ORG2=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/sl.com/users/Admin@sl.com/msp
+CORE_PEER_TLS_ROOTCERT_FILE_ORG2=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/sl.com/users/Admin@sl.com/tls/ca.crt
 
 # Approve Chaincode on peer0.org1Name.example.com Host
 docker exec cli peer lifecycle chaincode approveformyorg --tls --cafile $ORDERER_CA --channelID $CHANNEL_NAME --name $CHAINCODE_NAME --version $VERSION --sequence $SEQUENCE --waitForEvent --package-id $PACKAGE_ID

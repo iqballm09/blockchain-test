@@ -1,0 +1,1 @@
+docker compose -f sl.yaml up -d

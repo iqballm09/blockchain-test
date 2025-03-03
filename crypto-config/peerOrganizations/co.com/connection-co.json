@@ -1,0 +1,45 @@
+{
+  "name": "test-network-co",
+  "version": "1.0.0",
+  "client": {
+    "organization": "co",
+    "connection": {
+      "timeout": {
+        "peer": {
+          "endorser": "300"
+        }
+      }
+    }
+  },
+  "organizations": {
+    "co": {
+      "mspid": "coMSP",
+      "peers": ["peer0.co.com"],
+      "certificateAuthorities": ["ca.co.com"]
+    }
+  },
+  "peers": {
+    "co": {
+      "url": "grpcs://peer0.co.com:7051",
+      "tlsCACerts": {
+        "pem": "-----BEGIN CERTIFICATE-----\nMIICLjCCAdWgAwIBAgIQLOJv7fZh1fxMmf+gOsLpyTAKBggqhkjOPQQDAjBiMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEPMA0GA1UEChMGY28uY29tMRUwEwYDVQQDEwx0bHNjYS5jby5jb20w\nHhcNMjUwMzAzMDQwNDAwWhcNMzUwMzAxMDQwNDAwWjBiMQswCQYDVQQGEwJVUzET\nMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEPMA0G\nA1UEChMGY28uY29tMRUwEwYDVQQDEwx0bHNjYS5jby5jb20wWTATBgcqhkjOPQIB\nBggqhkjOPQMBBwNCAATVo5Ym+gJhrvjI/d6/CFvJMenwikI5X+5SyZG3bfQITzG0\nNLekF2RzbdgjjYC59UXhvAgf5N8a0F0NwzXt74iUo20wazAOBgNVHQ8BAf8EBAMC\nAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMB\nAf8wKQYDVR0OBCIEIB8Y37Nhq7N72lvu0h8YUpgouZLlcUGmj1QAUiN9z8fZMAoG\nCCqGSM49BAMCA0cAMEQCIF/4UtAUfSoKatDxeXpYOFxY207SUp+iVGA3qrbknj8A\nAiAJkdZwoyb+koj5TKBRsAGu6YpTK/WJYXCfd0CfOC6DTg==\n-----END CERTIFICATE-----\n"
+      },
+      "grpcOptions": {
+        "ssl-target-name-override": "peer0.co.com",
+        "hostnameOverride": "peer0.co.com"
+      }
+    }
+  },
+  "certificateAuthorities": {
+    "ca.co.com": {
+      "url": "https://10.239.54.23:7054",
+      "caName": "ca-co",
+      "tlsCACerts": {
+        "pem": ["-----BEGIN CERTIFICATE-----\nMIICKjCCAc+gAwIBAgIQE3RFNl+b1uuRpizDOZZa8zAKBggqhkjOPQQDAjBfMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEPMA0GA1UEChMGY28uY29tMRIwEAYDVQQDEwljYS5jby5jb20wHhcN\nMjUwMzAzMDQwNDAwWhcNMzUwMzAxMDQwNDAwWjBfMQswCQYDVQQGEwJVUzETMBEG\nA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEPMA0GA1UE\nChMGY28uY29tMRIwEAYDVQQDEwljYS5jby5jb20wWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAAQNsJg9VPghm8yu0ZEwsevZ6iPBSMBtu3DW5VbIErvyAdfk1mRaayVA\nW6KTaaWMO41UmwmiqEZkuqfCYEJN6tGvo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYD\nVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYD\nVR0OBCIEIODzIV/sYXoOTwjhLmE5bkZ6sPMxZGu/go1Uy6n9nJ1cMAoGCCqGSM49\nBAMCA0kAMEYCIQCL+KJ5c62sVksa/wKSp2FyFnoglrZSm+gwXrz9ieHH4QIhALxt\n9IfZDm8Wa6c0NaQsUsAmEmXWsR4QeAzU82PQ12Hd\n-----END CERTIFICATE-----\n"]
+      },
+      "httpOptions": {
+        "verify": false
+      }
+    }
+  }
+}

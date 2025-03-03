@@ -2,7 +2,3 @@ node_modules
 dist
 
 bin
-fabric-ca
-crypto-config
-channel-artifacts
-explorer

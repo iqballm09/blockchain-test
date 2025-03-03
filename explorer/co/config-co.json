@@ -1,0 +1,9 @@
+{
+  "network-configs": {
+    "-co": {
+      "name": "Network of co",
+      "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-co.json"
+    }
+  },
+  "license": "Apache-2.0"
+}

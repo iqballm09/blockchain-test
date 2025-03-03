@@ -1,0 +1,49 @@
+{
+  "name": "test-network-sl",
+  "description": "Connection profile for Hyperledger Explorer",
+  "version": "1.0.0",
+  "client": {
+    "organization": "sl",
+    "tlsEnable": true,
+    "enableAuthentication": true,
+    "adminCredential": {
+      "id": "admin",
+      "password": "adminpw"
+    },
+    "connection": {
+      "timeout": {
+        "peer": {
+          "endorser": "300"
+        },
+        "orderer": "300"
+      }
+    }
+  },
+  "organizations": {
+    "sl": {
+      "mspid": "slMSP",
+      "adminPrivateKey": {
+        "path": "/tmp/crypto/peerOrganizations/sl.com/users/Admin@sl.com/msp/keystore/priv_sk"
+      },
+      "peers": ["peer0.sl.com"],
+      "signedCert": {
+        "path": "/tmp/crypto/peerOrganizations/sl.com/users/Admin@sl.com/msp/signcerts/Admin@sl.com-cert.pem"
+      }
+    }
+  },
+  "peers": {
+    "peer0.sl.com": {
+      "url": "grpcs://peer0.sl.com:7051",
+      "tlsCACerts": {
+        "path": "/tmp/crypto/peerOrganizations/sl.com/msp/tlscacerts/tlsca.sl.com-cert.pem"
+      }
+    }
+  },
+  "channels": {
+    "test-channel": {
+      "peers": {
+        "peer0.sl.com": {}
+      }
+    }
+  }
+}

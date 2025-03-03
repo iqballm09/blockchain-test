@@ -1,0 +1,1 @@
+docker compose -f co.yaml up -d

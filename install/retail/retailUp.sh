@@ -1,1 +1,0 @@
-docker compose -f retail.yaml up -d

@@ -5,8 +5,8 @@
 VERSION="1"
 SEQUENCE="1"
 ORDERER_CA="/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/orderer.com/orderers/main.orderer.com/msp/tlscacerts/tlsca.orderer.com-cert.pem"
-PEER0_ORG1_TLS_ROOTCERT="/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/distributor.com/peers/peer0.distributor.com/tls/ca.crt"
-PEER0_ORG2_TLS_ROOTCERT="/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retail.com/peers/peer0.retail.com/tls/ca.crt"
+PEER0_ORG1_TLS_ROOTCERT="/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/co.com/peers/peer0.co.com/tls/ca.crt"
+PEER0_ORG2_TLS_ROOTCERT="/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/sl.com/peers/peer0.sl.com/tls/ca.crt"
 ORDERER_MAIN=orderer.main.com
 
 # Commit chaincode

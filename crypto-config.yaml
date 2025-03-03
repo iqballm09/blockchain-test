@@ -8,21 +8,21 @@ OrdererOrgs:
       - Hostname: main
         SANS:
           - orderer.main.com
-          - 45.158.126.74
-      - Hostname: distributor
+          - 10.239.54.23
+      - Hostname: co
         SANS:
-          - orderer.distributor.com
-          - 45.158.126.74
-      - Hostname: retail
+          - orderer.co.com
+          - 10.239.54.23
+      - Hostname: sl
         SANS:
-          - orderer.retail.com
-          - 45.149.187.204
+          - orderer.sl.com
+          - 10.239.54.32
 
 # Peer Definition
 # Note: Peer name orderer starts from 0. peer0, peer1, etc.
 PeerOrgs:
-  - Name: distributor
-    Domain: distributor.com
+  - Name: co
+    Domain: co.com
     EnableNodeOUs: true
     Template:
       Count: 1 # How many peer will be generated
@@ -31,11 +31,11 @@ PeerOrgs:
     Specs:
       - Hostname: peer0
         SANS:
-          - peer0.distributor.com
-          - 45.158.126.74
+          - peer0.co.com
+          - 10.239.54.23
 
-  - Name: retail
-    Domain: retail.com
+  - Name: sl
+    Domain: sl.com
     EnableNodeOUs: true
     Template:
       Count: 1
@@ -44,5 +44,5 @@ PeerOrgs:
     Specs:
       - Hostname: peer0
         SANS:
-          - peer0.retail.com
-          - 45.149.187.204
+          - peer0.sl.com
+          - 10.239.54.32

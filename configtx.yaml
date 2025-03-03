@@ -40,46 +40,46 @@ Organizations:
         Type: Signature
         Rule: "OR('ordererMSP.member')"
 
-  - &Distributor
-    Name: distributorMSP
-    ID: distributorMSP
-    MSPDir: crypto-config/peerOrganizations/distributor.com/msp
+  - &co
+    Name: coMSP
+    ID: coMSP
+    MSPDir: crypto-config/peerOrganizations/co.com/msp
     Policies:
       Readers:
         Type: Signature
-        Rule: "OR('distributorMSP.member')"
+        Rule: "OR('coMSP.member')"
       Writers:
         Type: Signature
-        Rule: "OR('distributorMSP.admin', 'distributorMSP.client')"
+        Rule: "OR('coMSP.admin', 'coMSP.client')"
       Admins:
         Type: Signature
-        Rule: "OR('distributorMSP.admin')"
+        Rule: "OR('coMSP.admin')"
       Endorsement:
         Type: Signature
-        Rule: "OR('distributorMSP.peer')"
+        Rule: "OR('coMSP.peer')"
     AnchorPeers:
-      - Host: peer0.distributor.com # define dns / ip address if using multihost technique
+      - Host: peer0.co.com # define dns / ip address if using multihost technique
         Port: 7051 # define port
 
-  - &Retail
-    Name: retailMSP
-    ID: retailMSP
-    MSPDir: crypto-config/peerOrganizations/retail.com/msp
+  - &sl
+    Name: slMSP
+    ID: slMSP
+    MSPDir: crypto-config/peerOrganizations/sl.com/msp
     Policies:
       Readers:
         Type: Signature
-        Rule: "OR('retailMSP.member')"
+        Rule: "OR('slMSP.member')"
       Writers:
         Type: Signature
-        Rule: "OR('retailMSP.admin', 'retailMSP.client')"
+        Rule: "OR('slMSP.admin', 'slMSP.client')"
       Admins:
         Type: Signature
-        Rule: "OR('retailMSP.admin')"
+        Rule: "OR('slMSP.admin')"
       Endorsement:
         Type: Signature
-        Rule: "OR('retailMSP.peer')"
+        Rule: "OR('slMSP.peer')"
     AnchorPeers:
-      - Host: peer0.retail.com
+      - Host: peer0.sl.com
         Port: 7051
 
 Application: &ApplicationDefaults
@@ -131,14 +131,14 @@ Orderer: &OrdererDefaults
         Port: 7050
         ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/main.orderer.com/tls/server.crt
         ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/main.orderer.com/tls/server.crt
-      - Host: orderer.distributor.com
+      - Host: orderer.co.com
         Port: 7055
-        ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/distributor.orderer.com/tls/server.crt
-        ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/distributor.orderer.com/tls/server.crt
-      - Host: orderer.retail.com
+        ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/co.orderer.com/tls/server.crt
+        ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/co.orderer.com/tls/server.crt
+      - Host: orderer.sl.com
         Port: 7055
-        ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/retail.orderer.com/tls/server.crt
-        ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/retail.orderer.com/tls/server.crt
+        ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/sl.orderer.com/tls/server.crt
+        ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/sl.orderer.com/tls/server.crt
 
 Profiles:
   OrdererGenesis:
@@ -150,8 +150,8 @@ Profiles:
     Consortiums:
       TestConsortium: # rename based on Consortium name on ChannelProfile
         Organizations:
-          - *Distributor
-          - *Retail
+          - *co
+          - *sl
 
   ChannelProfile:
     <<: *ChannelDefaults
@@ -159,5 +159,5 @@ Profiles:
     Application:
       <<: *ApplicationDefaults
       Organizations:
-        - *Distributor
-        - *Retail
+        - *co
+        - *sl
